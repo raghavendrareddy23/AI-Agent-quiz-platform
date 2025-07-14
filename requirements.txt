@@ -12,3 +12,4 @@ email-validator
 groq
 asyncio
 alembic
+python-multipart
