@@ -82,6 +82,6 @@ def get_user_attempts(
 def get_quiz_by_id(
     quiz_id: int,
     db: Session = Depends(get_db),
-    current_user: User = Depends(get_current_user),
+    # current_user: User = Depends(get_current_user),
 ):
-    return quiz_service.get_quiz_by_id(db, quiz_id, current_user_id=current_user.id)
+    return quiz_service.get_quiz_by_id(db, quiz_id)
