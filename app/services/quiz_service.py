@@ -185,14 +185,17 @@ class QuizService:
             .all()
         )
 
-    def get_quiz_by_id(self, db: Session, quiz_id: int, current_user_id: int):
+    def get_quiz_by_id(self, db: Session, quiz_id: int, current_user_id: Optional[int] = None):
         quiz = db.query(Quiz).filter(Quiz.id == quiz_id).first()
         if not quiz:
             raise HTTPException(status_code=404, detail="Quiz not found")
 
-        if not quiz.is_public and quiz.created_by != current_user_id:
-            raise HTTPException(
-                status_code=403, detail="You do not have access to this quiz"
-            )
+        # Only enforce access check if the quiz is private
+        if not quiz.is_public:
+            if current_user_id is None or quiz.created_by != current_user_id:
+                raise HTTPException(
+                    status_code=403, detail="You do not have access to this quiz"
+                )
 
         return quiz
+

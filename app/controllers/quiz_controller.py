@@ -39,7 +39,6 @@ async def generate_quiz(
     return quiz
 
 
-
 @router.get("/public", response_model=PaginatedResponse[QuizOut])
 def get_public_quizzes(
     page: int = Query(1, ge=1),
@@ -82,6 +81,5 @@ def get_user_attempts(
 def get_quiz_by_id(
     quiz_id: int,
     db: Session = Depends(get_db),
-    # current_user: User = Depends(get_current_user),
 ):
     return quiz_service.get_quiz_by_id(db, quiz_id)
