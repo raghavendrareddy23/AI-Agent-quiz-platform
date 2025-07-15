@@ -18,14 +18,14 @@ A full-stack FastAPI application that enables users to create, take, and manage 
 
 ## Tech Stack
 
-| Layer       | Technology            |
-|-------------|------------------------|
-| Backend     | FastAPI, SQLAlchemy    |
-| AI Engine   | Groq API               |
-| Database    | Microsoft SQL Server   |
-| Auth        | OAuth2 with JWT        |
-| Deployment  | Render.com             |
-| Migrations  | Alembic                |
+| Layer       | Technology               |
+|-------------|--------------------------|
+| Backend     | FastAPI, SQLAlchemy      |
+| AI Engine   | Groq API                 |
+| Database    | Postgre SQL(Google Cloud)|
+| Auth        | OAuth2 with JWT          |
+| Deployment  | Render.com               |
+| Migrations  | Alembic                  |
 
 ---
 
@@ -54,7 +54,7 @@ AI-Agent-Quiz-Platform/
 
 | Variable Name          | Description                            |
 |------------------------|----------------------------------------|
-| `DATABASE_URL`         | Connection string to MSSQL             |
+| `DATABASE_URL`         | Connection string to Postgre SQL       |
 | `SECRET_KEY`           | Secret key for JWT                     |
 | `GROQ_API_KEY`         | API key for Groq quiz generation       |
 
@@ -96,7 +96,7 @@ alembic upgrade head
 uvicorn main:app --reload
 ```
 
-Access the app at: `http://localhost:8000/docs`
+Access the app at: `https://ai-agent-quiz-platform.onrender.com/docs`
 
 ---
 
@@ -123,7 +123,7 @@ Access the app at: `http://localhost:8000/docs`
 
 ## AI Agent Overview
 
-- Runs automatically in the background every 30 minutes.
+- Runs automatically in the background every 15 minutes.
 - Selects random trending technology and difficulty to generate quizzes.
 - Saves quizzes to the database with `created_by = -1` and `is_ai_generated = True`.
 - Retries Groq API requests with exponential backoff if necessary.
