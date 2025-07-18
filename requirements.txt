@@ -14,3 +14,4 @@ asyncio
 alembic
 python-multipart
 psycopg2-binary
+tenacity 
