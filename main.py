@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.utils.migrate import run_migrations
 from config import settings
 
-run_migrations(apply_only=True)
+# run_migrations(apply_only=True)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
