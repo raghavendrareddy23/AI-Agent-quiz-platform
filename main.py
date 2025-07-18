@@ -8,6 +8,7 @@ from app.models.database import Base, engine
 from app.controllers import auth_controller, quiz_controller, ai_agent_controller
 from fastapi.middleware.cors import CORSMiddleware
 from app.utils.migrate import run_migrations
+from config import settings
 
 run_migrations(apply_only=True)
 
@@ -48,5 +49,10 @@ app.include_router(quiz_controller.router, prefix="/api/v1/quiz", tags=["quizzes
 app.include_router(ai_agent_controller.router, prefix="/api/v1/ai", tags=["agents"])
 
 
+# if __name__ == "__main__":
+#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    port = settings.PORT
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
+
